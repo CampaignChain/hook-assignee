@@ -1,0 +1,14 @@
+{
+    "name": "campaignchain/hook-assignee",
+    "description": "Assign a responsible user to an entity.",
+    "keywords": ["assignee"],
+    "type": "campaignchain-hook",
+    "homepage": "http://www.campaignchain.com",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Sandro Groganz",
+            "email": "sandro@campaignchain.com"
+        }
+    ]
+}
