@@ -10,18 +10,12 @@
 
 namespace CampaignChain\Hook\AssigneeBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
+use CampaignChain\CoreBundle\Form\Type\HookType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Doctrine\ORM\EntityRepository;
 
-class AssigneeType extends AbstractType
+class AssigneeType extends HookType
 {
-    private $campaign;
-
-    public function setCampaign($campaign){
-        $this->campaign = $campaign;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
