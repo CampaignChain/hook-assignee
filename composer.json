@@ -1,7 +1,7 @@
 {
     "name": "campaignchain/hook-assignee",
     "description": "Assign a responsible user to an entity.",
-    "keywords": ["assignee"],
+    "keywords": ["hook","campaignchain"],
     "type": "campaignchain-hook",
     "homepage": "http://www.campaignchain.com",
     "license": "Apache-2.0",
