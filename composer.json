@@ -1,6 +1,6 @@
 {
     "name": "campaignchain/hook-assignee",
-    "description": "Assign a responsible user to an entity.",
+    "description": "Assign a responsible user to an Action or Medium.",
     "keywords": ["hook","campaignchain"],
     "type": "campaignchain-hook",
     "homepage": "http://www.campaignchain.com",
