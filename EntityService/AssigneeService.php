@@ -10,8 +10,9 @@
 
 namespace CampaignChain\Hook\AssigneeBundle\EntityService;
 
+use CampaignChain\CoreBundle\Entity\AssignableInterface;
 use CampaignChain\CoreBundle\EntityService\HookServiceDefaultInterface;
-use CampaignChain\Hook\AssigneeBundle\Entity\Assignee;
+use CampaignChain\Hook\AssigneeBundle\Model\Assignee;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Common\Inflector\Inflector;
 
@@ -24,35 +25,22 @@ class AssigneeService implements HookServiceDefaultInterface
         $this->em = $em;
     }
 
-//    public function newObject($entityClass, $entityId, $formData){
-//        $assignee = new Assignee();
-//        $assignee->setEntityId($entityId);
-//        $assignee->setEntityClass($entityClass);
-//        $assignee->setUser($formData['user']);
-//
-//        return $assignee;
-//    }
-
     public function getHook($entity){
-        if(!$entity || $entity->getId() === null){
-            $hook = new Assignee();
-        } else {
-            $hook = $this->em->getRepository('CampaignChainHookAssigneeBundle:Assignee')->findOneBy(array(
-                'entityClass' => get_class($entity),
-                'entityId' => $entity->getId(),
-            ));
+        $hook = new Assignee();
+        if($entity && $entity->getId() && $entity instanceof AssignableInterface){
+            $hook->setUser($entity->getAssignee());
         }
-
         return $hook;
     }
 
     public function processHook($entity, $hook){
-        if($hook->getId() === null){
-            $hook->setEntityId($entity->getId());
-            $hook->setEntityClass(get_class($entity));
+        if (!$entity instanceof AssignableInterface) {
+            return $entity;
         }
 
-        $this->em->persist($hook);
+        $entity->setAssignee($hook->getUser());
+
+        $this->em->persist($entity);
         $this->em->flush();
 
         return $entity;
