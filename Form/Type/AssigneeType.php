@@ -11,11 +11,25 @@
 namespace CampaignChain\Hook\AssigneeBundle\Form\Type;
 
 use CampaignChain\CoreBundle\Form\Type\HookType;
+use CampaignChain\Hook\AssigneeBundle\Model\Assignee;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\FormBuilderInterface;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class AssigneeType extends HookType
 {
+    /**
+     * @var EntityManager
+     */
+    private $entityManager;
+
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -29,7 +43,23 @@ class AssigneeType extends HookType
                 'property' => 'username',
                 'empty_value' => 'Select responsible person',
                 'empty_data' => null,
-            ));
+            ))
+            ->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'preSetData']);
+        ;
+    }
+
+    public function preSetData(FormEvent $event)
+    {
+        /**
+         * @var $data Assignee
+         */
+        $data = $event->getData();
+
+        if (!$data->getUser()) {
+            return;
+        }
+
+        $this->entityManager->persist($data->getUser());
     }
 
     public function getName()

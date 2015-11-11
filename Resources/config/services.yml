@@ -11,5 +11,7 @@ services:
     campaignchain.hook.campaignchain.assignee:
         class: CampaignChain\Hook\AssigneeBundle\EntityService\AssigneeService
         arguments: [ @doctrine.orm.entity_manager ]
+
     campaignchain.hook.form.type.campaignchain.assignee:
         class: CampaignChain\Hook\AssigneeBundle\Form\Type\AssigneeType
+        arguments: [ @doctrine.orm.entity_manager ]
