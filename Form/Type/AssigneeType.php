@@ -29,6 +29,9 @@ class AssigneeType extends HookType
                 'property' => 'nameAndUsername',
                 'empty_value' => 'Select responsible person',
                 'empty_data' => null,
+                'attr' => array(
+                    'show_image' => true,
+                )
             ));
     }
 
