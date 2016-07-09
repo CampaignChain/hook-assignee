@@ -38,4 +38,11 @@ class Assignee
     {
         return $this->user;
     }
+
+    public function toArray()
+    {
+        return array(
+            'user' => $this->getUser()->getId(),
+        );
+    }
 }
