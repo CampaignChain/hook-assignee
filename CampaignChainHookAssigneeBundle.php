@@ -17,8 +17,13 @@
 
 namespace CampaignChain\Hook\AssigneeBundle;
 
+use CampaignChain\Hook\AssigneeBundle\DependencyInjection\CampaignChainHookAssigneeExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class CampaignChainHookAssigneeBundle extends Bundle
 {
+    public function getContainerExtension()
+    {
+        return new CampaignChainHookAssigneeExtension();
+    }
 }
