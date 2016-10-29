@@ -20,16 +20,16 @@ namespace CampaignChain\Hook\AssigneeBundle\EntityService;
 use CampaignChain\CoreBundle\Entity\AssignableInterface;
 use CampaignChain\CoreBundle\EntityService\HookServiceDefaultInterface;
 use CampaignChain\Hook\AssigneeBundle\Model\Assignee;
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Inflector\Inflector;
 
 class AssigneeService implements HookServiceDefaultInterface
 {
     protected $em;
 
-    public function __construct(EntityManager $em)
+    public function __construct(ManagerRegistry $managerRegistry)
     {
-        $this->em = $em;
+        $this->em = $managerRegistry->getManager();
     }
 
     public function getHook($entity){
