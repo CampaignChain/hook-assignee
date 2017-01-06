@@ -23,7 +23,7 @@ use CampaignChain\Hook\AssigneeBundle\Model\Assignee;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Inflector\Inflector;
 
-class AssigneeService implements HookServiceDefaultInterface
+class AssigneeService extends HookServiceDefaultInterface
 {
     protected $em;
 
@@ -50,7 +50,9 @@ class AssigneeService implements HookServiceDefaultInterface
         $this->em->persist($entity);
         $this->em->flush();
 
-        return $entity;
+        $this->setEntity($entity);
+
+        return true;
     }
 
     public function arrayToObject($hookData){
