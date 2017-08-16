@@ -20,3 +20,5 @@ services:
         arguments: [ '@doctrine' ]
     campaignchain.hook.form.type.campaignchain.assignee:
         class: CampaignChain\Hook\AssigneeBundle\Form\Type\AssigneeType
+        tags:
+            - { name: form.type }

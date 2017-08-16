@@ -42,7 +42,7 @@ class AssigneeType extends HookType
             ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'campaignchain_hook_campaignchain_assignee';
     }
