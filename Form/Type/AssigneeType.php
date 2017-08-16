@@ -33,8 +33,8 @@ class AssigneeType extends HookType
                         return $er->createQueryBuilder('u')
                             ->orderBy('u.username', 'ASC');
                     },
-                'property' => 'nameAndUsername',
-                'empty_value' => 'Select responsible person',
+                'choice_label' => 'nameAndUsername',
+                'placeholder' => 'Select responsible person',
                 'empty_data' => null,
                 'attr' => array(
                     'show_image' => true,
