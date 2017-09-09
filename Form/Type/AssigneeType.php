@@ -25,6 +25,8 @@ class AssigneeType extends HookType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $this->setOptions($options);
+
         $builder
             ->add('user', 'entity', array(
                 'label' => false,
